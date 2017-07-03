@@ -104,7 +104,7 @@ INNER JOIN (select m.id,m.name,m.short_name ,m.PARENTID,m.ORGTYPE,m.create_time,
 		a.create_time,
 		case when LENGTH(a.path)=8 then (SELECT id from org_unit where path='00000001')
 		when LENGTH(a.path)=12 then (SELECT CONCAT(a.id,',',b.id) from org_unit b where LENGTH(b.path)=8 and SUBSTR(a.path ,1 ,8)=b.path)
-		when LENGTH(a.path)=16 then (SELECT CONCAT(a.id,',',b.id)from org_unit b where LENGTH(b.path)=12 and SUBSTR(a.path ,1 ,12)=b.path)
+		when LENGTH(a.path)=16 then (SELECT CONCAT('670869647114347',',',a.id,',',b.id)from org_unit b where LENGTH(b.path)=12 and SUBSTR(a.path ,1 ,12)=b.path)
 		when LENGTH(a.path)=20 then (SELECT CONCAT(a.id,',',b.id)from org_unit b where LENGTH(b.path)=16 and SUBSTR(a.path ,1 ,16)=b.path)
 		when LENGTH(a.path)=24 then (SELECT CONCAT(a.id,',',b.id)from org_unit b where LENGTH(b.path)=20 and SUBSTR(a.path ,1 ,20)=b.path)
 		else ''
@@ -171,11 +171,33 @@ SELECT a.userid,'YG','40289481592f22bf01592f406ccb0044'
 from umuser a
 where a.userid not in (SELECT b.orgid from umuserrole b )
 '''
+# OA组织架构表tmp_umorg与日志系统组织架构表umorg表对比，若日志系统系统有而OA没有者更新字段标志del_flg
+update_umorg = '''UPDATE umorg  SET del_flag='1'
+where ORGID not in (SELECT ORGID from tmp_umorg)'''
+# 二次更新组织架构
+update_umorg_two = '''UPDATE umorg a 
+                            inner join tmp_umorg b on a.orgid=b.orgid
+                            SET a.del_flag= b.del_flag,a.orgname=b.orgname,
+                            a.parentid=b.parentid,a.parentids=b.parentids'''
+
+# OA组织人员表tmp_umuser与日志系统组织人员表umuser对比，若日志系统系统有而OA没有者更新字段标志del_flg
+update_umuser = '''UPDATE umuser  SET del_flag='1'
+where userid not in (SELECT userid from tmp_umuser)'''
+# 二次更新组织人员
+update_umuser_two = '''UPDATE umuser a 
+                                inner join tmp_umuser b on a.userid=b.userid
+                                SET a.del_flag= b.del_flag,a.position=b.position,
+                                a.position_type=b.position_type,a.email=b.email,
+                                a.parentids=b.parentids,a.orgname=b.orgname,
+                                a.orgid=b.orgid,a.logonid=SUBSTRING_INDEX(b.EMAIL,'@',1))'''
 
 try:
     cursor.execute(syc_table_user)
     cursor.execute(syc_table_org)
     cursor.execute(syc_table_roleright)
+    cursor.execute(update_umorg)
+    cursor.execute(update_umorg_two)
+    cursor.execute(update_umuser)
     db.commit()
 
 except ValueError:
