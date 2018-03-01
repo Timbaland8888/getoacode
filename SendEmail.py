@@ -122,12 +122,12 @@ mail_msg += html_end
 print mail_msg
 # 收件人列表
 mail_namelist = ['yanshanghua@xuanyuan.com.cn','chenglin@xuanyuan.com.cn']
-# mail_namelist =["422033564@qq.com",'leixiangling@xuanyuan.com.cn']
+# mail_namelist =["422034@qq.com",'leixg@xuyuan.com.cn']
 # 发送方信息
-mail_user = "rzglxt@xuanyuan.com.cn"
+mail_user = "xt@xua.com.cn"
 #口令
-# mail_pass = "rlixtgnujleocagi"
-mail_pass = "1234qwer"
+# mail_pass = "rlixtggi"
+mail_pass = "12r"
 #发送邮件
 #title：标题
 #conen：内容
