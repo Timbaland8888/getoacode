@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: UTF-8 -*-
 # Arthur:Timbaland
-# Date:2018-06-28
+# Date:20180623
 # from dateutil import parser
 import cx_Oracle, sys, os
 import MySQLdb
@@ -29,18 +29,21 @@ charset = 'utf8'
 db = MySQLdb.connect(host=ip, user=user, passwd=password, db=dbname, port=port, charset=charset)
 cursor = db.cursor()
 
+
+
+
 # 二次更新组织人员
 update_umuser_two = '''UPDATE umuser a 
                                 inner join tmp_umuser b on a.userid=b.userid
                                 SET a.del_flag= b.del_flag,a.position=b.position,
                                 a.position_type=b.position_type,a.email=b.email,
                                 a.parentids=b.parentids,a.orgname=b.orgname,
-                                a.orgid=b.orgid,a.logonid=case when  a.LOGONID='' then b.LOGONID ELSE SUBSTRING_INDEX(b.EMAIL,'@',1) end '''
+                                a.orgid=b.orgid,a.logonid= case when  a.LOGONID='' then b.LOGONID ELSE SUBSTRING_INDEX(b.EMAIL,'@',1) end'''
 
 try:
 
     cursor.execute(update_umuser_two)
-
+    
     db.commit()
 
 except ValueError:

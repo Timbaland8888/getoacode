@@ -2,8 +2,8 @@
 <project version="4">
   <component name="WebServers">
     <option name="servers">
-      <webServer id="2cff3466-d4a1-436d-8fcd-7cd87e14eb00" name="192.168.24.213" url="http://192.168.24.213">
-        <fileTransfer host="192.168.24.213" port="22" rootFolder="/tim/Local_OA" accessType="SFTP">
+      <webServer id="2cff3466-d4a1-436d-8fcd-7cd87e14eb00" name="192.168.24.213" url="http://192.168.29.239">
+        <fileTransfer host="192.168.29.239" port="22" rootFolder="/oa/Local_OA" accessType="SFTP">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" />
           </advancedOptions>

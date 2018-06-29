@@ -2,8 +2,8 @@
 # -*- coding: UTF-8 -*-
 # Arthur:Timbaland
 # Date:
+# from dateutil import parser
 import cx_Oracle,sys,os
-from dateutil import parser
 import MySQLdb
 reload(sys)
 sys.setdefaultencoding('utf8')
@@ -57,7 +57,7 @@ try:
     row_level = cursor.rowcount
     # print row_level
 except ValueError:
-    db.roolback
+    cursor.roolback
     print 'error'
 
 #关闭游标和oracle数据库连接
@@ -66,11 +66,11 @@ conn.close ()
 
 #连接mysql数据库参数字段
 con = None
-ip = '192.168.24.213'
+ip = '58.67.220.228'
 user = 'root'
-password ='xuanyuan'
+password ='xuanyuan@123'
 dbname ='log_system'
-port =3306
+port =3321
 charset ='utf8'
 db = MySQLdb.connect(host=ip,user=user,passwd=password,db=dbname,port=port,charset=charset)
 cursor = db.cursor()
@@ -88,7 +88,7 @@ for j in range(row_unit):
 
 # 使用execute方法执行SQL语句
     try:
-        cursor.execute('TRUNCATE TABLE org_unit')
+        # cursor.execute('TRUNCATE TABLE org_unit')
         cursor.execute(sql_unit)
 
         # print  cursor.fetchall()[0][1]ex
@@ -108,7 +108,7 @@ for j in range(row_post):
     sql_post = sql_post.replace('None','')
     # 使用execute方法执行SQL语句
     try:
-        cursor.execute('TRUNCATE TABLE org_post')
+        # cursor.execute('TRUNCATE TABLE org_post')
         cursor.execute(sql_post)
 
         # print  cursor.fetchall()[0][1]ex
@@ -138,7 +138,7 @@ for j in range(row_member):
     print sql_member
     # 使用execute方法执行SQL语句
     try:
-        cursor.execute('TRUNCATE TABLE org_member')
+        # cursor.execute('TRUNCATE TABLE org_member')
         cursor.execute(sql_member)
         db.commit()
     except ValueError:
@@ -157,7 +157,7 @@ for j in range(row_level):
 
     # 使用execute方法执行SQL语句
     try:
-        cursor.execute('TRUNCATE TABLE org_level')
+        # cursor.execute('TRUNCATE TABLE org_level')
         cursor.execute(sql_level)
 
         # print  cursor.fetchall()[0][1]ex

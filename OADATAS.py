@@ -2,8 +2,8 @@
 # -*- coding: UTF-8 -*-
 # Arthur:Timbaland
 # Date:
+# from dateutil import parser
 import cx_Oracle, sys, os
-from dateutil import parser
 import MySQLdb
 import pinyin
 
@@ -15,11 +15,6 @@ sys.setdefaultencoding('utf8')
 ①在Oracle客户端向服务器端提交SQL语句时，Oracle客户端根据NLS_LANG和数据库字符集，对从应用程序接传送过来的字符串编码进行转换处理。
 如果NLS_LANG与数据库字符集相同，不作转换，否则要转换成数据库字符集并传送到服务器。服务器在接收到字符串编码之后，对于普通的CHAR或
 VARCHAR2类型，直接存储;对于NCHAR或NVARCHAR2类型，服务器端将其转换为国家字符集再存储。
-
-①在Oracle客户端向服务器端提交SQL语句时，Oracle客户端根据NLS_LANG和数据库字符集，对从应用程序接传送过来的字符串编码进行转换处理。
-如果NLS_LANG与数据库字符集相同，不作转换，否则要转换成数据库字符集并传送到服务器。服务器在接收到字符串编码之后，对于普通的CHAR或
-VARCHAR2类型，直接存储;对于NCHAR或NVARCHAR2类型，服务器端将其转换为国家字符集再存储。
-
 '''
 os.environ['NLS_LANG'] = 'SIMPLIFIED CHINESE_CHINA.UTF8'
 
@@ -189,7 +184,7 @@ update_umuser_two = '''UPDATE umuser a
                                 SET a.del_flag= b.del_flag,a.position=b.position,
                                 a.position_type=b.position_type,a.email=b.email,
                                 a.parentids=b.parentids,a.orgname=b.orgname,
-                                a.orgid=b.orgid,a.logonid=SUBSTRING_INDEX(b.EMAIL,'@',1))'''
+                                a.orgid=b.orgid,a.logonid=SUBSTRING_INDEX(b.EMAIL,'@',1)'''
 
 try:
     cursor.execute(syc_table_user)
