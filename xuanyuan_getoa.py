@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: UTF-8 -*-
 # Arthur:Timbaland
-# Date:
+# Date:20180629
 # from dateutil import parser
 import cx_Oracle,sys,os
 import MySQLdb
