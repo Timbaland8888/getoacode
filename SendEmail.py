@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: UTF-8 -*-
 # Arthur:Timbaland
-# Date:
+# Date:20180629
 import smtplib
 import cx_Oracle,sys,os
 from dateutil import parser
