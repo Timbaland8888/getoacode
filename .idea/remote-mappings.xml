@@ -10,6 +10,13 @@
             </list>
           </settings>
         </remote-mappings>
+        <remote-mappings server-id="python@ssh://root@192.168.29.239:22/usr/bin/python">
+          <settings>
+            <list>
+              <mapping local-root="$PROJECT_DIR$" remote-root="/oa/Local_OA" />
+            </list>
+          </settings>
+        </remote-mappings>
       </list>
     </list>
   </component>

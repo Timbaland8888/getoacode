@@ -4,7 +4,7 @@
 # Date:20180629
 import smtplib
 import cx_Oracle,sys,os
-from dateutil import parser
+# from dateutil import parser
 import MySQLdb
 from email.mime.text import MIMEText
 reload(sys)
@@ -25,7 +25,7 @@ os.environ['NLS_LANG'] = 'SIMPLIFIED CHINESE_CHINA.UTF8'
 
 #连接mysql数据库参数字段
 con = None
-ip = '58.67.220.228'
+ip = '192.168.29.132'
 user = 'root'
 password ='xuanyuan@123'
 dbname ='log_system'
@@ -121,8 +121,8 @@ for i in range(result_row):
 mail_msg += html_end
 print mail_msg
 # 收件人列表
-mail_namelist = ['yanshanghua@xuanyuan.com.cn','chenglin@xuanyuan.com.cn']
-# mail_namelist =["422033564@qq.com",'leixiangling@xuanyuan.com.cn']
+# mail_namelist = ['yanshanghua@xuanyuan.com.cn','chenglin@xuanyuan.com.cn']
+mail_namelist =["422033564@qq.com",'leixiangling@xuanyuan.com.cn']
 # 发送方信息
 mail_user = "rzglxt@xuanyuan.com.cn"
 #口令
